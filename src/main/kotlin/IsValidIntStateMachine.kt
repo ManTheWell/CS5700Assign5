@@ -1,6 +1,6 @@
 import kotlin.system.exitProcess
 
-class IsValidIntStateMachine() {
+class IsValidIntStateMachine {
     private val stateFunctions: Map<Int, (Char) -> Int> = mapOf(
         -1 to { -1 },
         0 to { input -> state0(input) },
