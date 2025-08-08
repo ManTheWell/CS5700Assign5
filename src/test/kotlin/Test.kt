@@ -49,4 +49,33 @@ class Test {
         assertEquals(false, floatingTester.isBinaryNumber("1000010"))
         assertEquals(false, floatingTester.isBinaryNumber("100a01"))
     }
+
+    @Test
+    fun `test is_valid email state machine`() {
+        val floatingTester = IsValidEmailStateMachine()
+
+        assertEquals(true, floatingTester.isValidEmail("a@b.c"))
+        assertEquals(true, floatingTester.isValidEmail("joseph.ditton@usu.edu"))
+        assertEquals(true, floatingTester.isValidEmail("{}*\\$.&\\$*(@*\\$%&.*&*"))
+
+        assertEquals(false, floatingTester.isValidEmail("@b.c"))
+        assertEquals(false, floatingTester.isValidEmail("a@b@c.com"))
+        assertEquals(false, floatingTester.isValidEmail("a.b@b.b.c"))
+        assertEquals(false, floatingTester.isValidEmail("joseph ditton@usu.edu"))
+    }
+
+    @Test
+    fun `test is complex password state machine`() {
+        val floatingTester = IsComplexPasswordStateMachine()
+
+        assertEquals(true, floatingTester.isComplexPassword("aaaaH!aa"))
+        assertEquals(true, floatingTester.isComplexPassword("1234567*9J"))
+        assertEquals(true, floatingTester.isComplexPassword("asdpoihj;loikjasdf;ijp;lij2309jasd;lfkm20ij@aH"))
+        assertEquals(true, floatingTester.isComplexPassword("1234\\\"567* 9J"))
+
+        assertEquals(false, floatingTester.isComplexPassword("a"))
+        assertEquals(false, floatingTester.isComplexPassword("aaaaaaa!"))
+        assertEquals(false, floatingTester.isComplexPassword("aaaHaaaaa"))
+        assertEquals(false, floatingTester.isComplexPassword("Abbbbbbb!"))
+    }
 }

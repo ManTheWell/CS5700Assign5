@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-08-08T20:55:39" hostname="TOWER-DESKTOP" time="0.024">
+<testsuite name="Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-08-08T22:22:53" hostname="TOWER-DESKTOP" time="0.042">
   <properties/>
-  <testcase name="test is_valid binary number state machine()" classname="Test" time="0.024"/>
+  <testcase name="test is complex password state machine()" classname="Test" time="0.042"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
