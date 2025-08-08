@@ -1,53 +1,36 @@
 import kotlin.system.exitProcess
 
-private val stateFunctions: Map<Int, (String) -> Int> = mapOf(
-    -1 to { -1 },
-    0 to { input -> state0(input) },
-    1 to { input -> state1(input) }
-)
+class IsValidIntStateMachine() {
+    private val stateFunctions: Map<Int, (Char) -> Int> = mapOf(
+        -1 to { -1 },
+        0 to { input -> state0(input) },
+        1 to { input -> state1(input) }
+    )
 
-fun isInt(input: String): Boolean {
-    var state = 0
+    fun isInt(input: String): Boolean {
+        if (input.isEmpty()) return false
 
-    if (input.isEmpty()) state = -1
+        var state = 0
+        var index = 0
 
-    var index = 0
+        while (index < input.length) {
+            val stateFunction = stateFunctions[state] ?: { println("Unknown State: $state"); exitProcess(-1) }
+            state = stateFunction(input[index++])
 
-    while (index < input.length) {
-        val stateFunction = stateFunctions[state] ?: { println("Unknown State: $state"); exitProcess(-1) }
-        state = stateFunction(input.substring(index, index++))
+            // for added efficiency; would work without this
+            if (state == -1) break
+        }
 
-        //added efficiency
-        if (state == -1) break
+        return state != -1
     }
 
-    return state != -1
-}
+    private fun state0(token: Char): Int {
+        // when starting, must be 1 (ascii val 49) - 9 (ascii val 57)
+        return if (token.code in 49..57) 1 else -1
+    }
 
-fun state0(input: String): Int {
-    return if ("123456789".contains(input[0])) 1 else -1
+    private fun state1(token: Char): Int {
+        // when already started, must be 0 (ascii val 48) - 9 (ascii val 57)
+        return if (token.code in 48..57) 1 else -1
+    }
 }
-
-fun state1(input: String): Int {
-    return if ("0123456789".contains(input[0])) 1 else -1
-}
-
-//class IsValidInt() {
-//    fun isValid(input: String): Boolean {
-//        if (input.isEmpty()) return false
-//
-//        var state = 1
-//        var index = 0
-//
-//        while (index < input.length) {
-//            when (state) {
-//                -1 -> break
-//                1 -> state = if (input[index].code in 49..57) 2 else -1
-//                2 -> state = if (input[index].code in 48..57) 2 else -1
-//            }
-//            index++
-//        }
-//
-//        return state != -1
-//    }
-//}

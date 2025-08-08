@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Test
 class Test {
     @Test
     fun `test valid integers`() {
-        val intTester = IsValidInt()
+        val intTester = IsValidIntStateMachine()
 
-        assertEquals(true, intTester.isValid("1"))
-        assertEquals(true, intTester.isValid("123"))
-        assertEquals(true, intTester.isValid("345230352434534524046"))
+        assertEquals(true, intTester.isInt("1"))
+        assertEquals(true, intTester.isInt("123"))
+        assertEquals(true, intTester.isInt("345230352434534524046"))
 
-        assertEquals(false, intTester.isValid(""))
-        assertEquals(false, intTester.isValid("0123"))
-        assertEquals(false, intTester.isValid("132a"))
-        assertEquals(false, intTester.isValid("0"))
+        assertEquals(false, intTester.isInt(""))
+        assertEquals(false, intTester.isInt("0123"))
+        assertEquals(false, intTester.isInt("132a"))
+        assertEquals(false, intTester.isInt("0"))
     }
 }
